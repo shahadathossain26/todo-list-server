@@ -41,6 +41,13 @@ async function run() {
             res.send(result);
         })
 
+        app.get('/todo/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const result = await todoCollection.findOne(filter);
+            res.send(result);
+        })
+
         app.delete('/todo/:id', async (req, res) => {
             const id = req.params.id
             const query = { _id: new ObjectId(id) }
